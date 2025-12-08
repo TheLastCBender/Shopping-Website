@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shopping Website</title>
+    <script src="./components/button.js" defer></script>
+    <script src="./components/itemCard.js" defer></script>
+    <script src="./components/carousel.js" defer></script>
+    <link href="./style.css" rel="stylesheet" />
+
+    <!--Libre Baskerville-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <!--LATO FONT-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!--BLACK HEADER-->
+    <div class="header1"></div>
+    <header>
+      <!--SECOND HEADER(BEIGE-ISH)-->
+      <div class="header2">
+        <!--header with nav bars-->
+        <ul class="primary-nav-bar">
+          <!--shop menu item-->
+          <li class="primary menu-item">
+            <a href="">Shop</a>
+
+            <div id="shop-drop-down-area">
+              <ul class="drop-down">
+                <li>SHOP BY COLLECTION</li>
+                <li>
+                  <a href="./pages/Shop.html">New Releases</a>
+                </li>
+                <li>
+                  <a href="./pages/Shop.html">Bestsellers</a>
+                </li>
+                <li>
+                  <a href="./pages/Shop.html">Sale Items</a>
+                </li>
+                <li>
+                  <a href="./pages/Shop.html">Available In Store</a>
+                </li>
+                <li>
+                  <a href="./pages/Shop.html">Browse The Archives</a>
+                </li>
+              </ul>
+              <ul class="drop-down">
+                <li>SHOP BY CATEGORY</li>
+                <li>
+                  <a href="./pages/Shop.html">Bangles & Braces</a>
+                </li>
+                <li>
+                  <a href="./pages/Shop.html">Bags</a>
+                </li>
+                <li>
+                  <a href="./pages/Shop.html">Brooches</a>
+                </li>
+                <li>
+                  <a href="./pages/Shop.html">Earrings</a>
+                </li>
+                <li>
+                  <a href="./pages/Shop.html"> Necklaces</a>
+                </li>
+                <li>
+                  <a href="./pages/Shop.html">Rings</a>
+                </li>
+                <li>
+                  <a href="./pages/Shop.html">Gift Cards</a>
+                </li>
+                <li>
+                  <a href="./pages/Shop.html">Packaging and Extras</a>
+                </li>
+                <li>
+                  <a href="./pages/Shop.html">Shop All</a>
+                </li>
+              </ul>
+              <ul class="drop-down">
+                <li>SHOP BY STYLE</li>
+                <li>
+                  <a href="./pages/Shop.html">Lightweight</a>
+                </li>
+                <li>
+                  <a href="./pages/Shop.html">Midweight</a>
+                </li>
+                <li>
+                  <a href="./pages/Shop.html">Power Purple</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <a class="primary menu-item" href="./pages/Shop.html">The Artist</a>
+          </li>
+          <li>
+            <a class="primary menu-item" href="./pages/Shop.html">KHOI</a>
+          </li>
+          <li>
+            <a class="primary menu-item" href="./pages/Shop.html">Blog</a>
+          </li>
+          <li>
+            <a class="primary menu-item" href="./pages/Shop.html">Contact</a>
+          </li>
+        </ul>
+
+        <h1 class="web-title-container">KHOI</h1>
+
+        <nav style="flex: 1">
+          <ul class="secondary-nav-bar">
+            <li class="secondary menu-item">
+              <a href="google.com">
+                <img src="./Icons/search.svg" alt="search button" />
+              </a>
+            </li>
+            <li class="secondary menu-item">
+              <a>
+                <img src="./Icons/person-fill.svg" alt="account button" />
+              </a>
+            </li>
+            <li class="secondary menu-item">
+              <a>
+                <img src="./Icons/list.svg" alt="search button" />
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <!--HERO SECTION-->
+      <section>
+        <div class="hero-carousel">
+          <div class="slide current"></div>
+          <div class="slide next"></div>
+          <div id="hero-text">
+            <div class="hero-text">NEW ARRIVALS</div>
+          </div>
+
+          <div class="carousel-dots">
+            <div class="dot-container">
+              <div class="dot"></div>
+              <div class="dot"></div>
+              <div class="dot"></div>
+              <div class="dot"></div>
+              <div class="dot"></div>
+              <div class="dot"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!--ITEM CAROUSEL(NEW RELEASES SECTION)-->
+      <section>
+        <div class="section-title">
+          <h2 style="text-align: center; margin: 3rem 0rem">NEW RELEASES</h2>
+        </div>
+
+        <div class="item-carousel">
+          <shop-item-card></shop-item-card>
+          <shop-item-card></shop-item-card>
+          <shop-item-card></shop-item-card>
+          <shop-item-card></shop-item-card>
+        </div>
+
+        <div class="center-button-container">
+          <div id="view-all-products-button">
+            <h2>View All Products</h2>
+          </div>
+        </div>
+      </section>
+
+      <!--SHOPPING CATEGORIES-->
+      <section>
+        <div class="shopping-categories-container">
+          <div class="shopping-card">
+            <a href="google.com">
+              <label></label>
+              <img
+                src="./Images/wigs-shopping-card-img.jpg"
+                alt="photo of ear rings"
+              />
+              <button>WIGS</button>
+            </a>
+          </div>
+          <div class="shopping-card">
+            <a href="google.com">
+              <img
+                src="./Images/black_girl_magic-11.jpg"
+                alt="photo of ear rings"
+              />
+              <button>SHOP</button>
+            </a>
+          </div>
+          <div class="shopping-card">
+            <a href="google.com">
+              <img
+                src="./Images/black_girl_magic-11.jpg"
+                alt="photo of ear rings"
+              />
+              <button>SHOP</button>
+            </a>
+          </div>
+          <div class="shopping-card">
+            <a href="google.com">
+              <img
+                src="./Images/black_girl_magic-11.jpg"
+                alt="photo of ear rings"
+              />
+              <button>SHOP</button>
+            </a>
+          </div>
+        </div>
+      </section>
+      <!--ABOUT ME SECTION-->
+      <section>
+        <div class="about-me-section">
+          <div>
+            <h3>ABOUT US</h3>
+          </div>
+
+          <button>OUR STUDIO</button>
+        </div>
+      </section>
+
+      <section></section>
+    </main>
+
+    <footer>
+      <ul class="footerColumn">
+        <li class="footerListItem">CUSTOMER CARE</li>
+        <li class="footerListItem">Contact Us</li>
+        <li class="footerListItem">Track Your Order</li>
+        <li class="footerListItem">Return</li>
+        <li class="footerListItem">Shipping Policy</li>
+        <li class="footerListItem">Refunf & Returns Policy</li>
+        <li class="footerListItem">PreOrder Policy</li>
+      </ul>
+      <ul class="footerColumn">
+        <li class="footerListItem">INFORMATION</li>
+        <li class="footerListItem">Size and weight guide</li>
+        <li class="footerListItem">FAQs</li>
+        <li class="footerListItem">Terms & conditions</li>
+        <li class="footerListItem">Privacy policy</li>
+        <li class="footerListItem">Careers</li>
+      </ul>
+      <ul class="footerColumn">
+        <li class="footerListItem">CONNECT</li>
+        <li class="footerListItem">Instagram</li>
+        <li class="footerListItem">Blog</li>
+        <li class="footerListItem">Press inquiries</li>
+        <li class="footerListItem">General inquiries</li>
+      </ul>
+      <ul class="footerColumn">
+        <li class="footerListItem">KHOI STORE</li>
+        <li class="footerListItem">
+          2128 North Damen Avenue Chicago Illinois,60647 United States
+        </li>
+        <li class="footerListItem">Phone +1 773-360-8052</li>
+        <li class="footerListItem">Monday(Closed)</li>
+        <li class="footerListItem">
+          Tuesday - Thursday (Appointment only via retail@shopkhoi.com)
+        </li>
+        <li class="footerListItem">
+          Friday 1:00 - 7:00pm Saturday 10:00 - 4:00pm Sunday 12:00 - 4:00pm
+        </li>
+      </ul>
+      <ul class="footerColumn">
+        <li class="footerListItem">SUBSCRIBE</li>
+        <li class="footerListItem">
+          Be the first to know about new collections, special events and much
+          more.
+        </li>
+        <li class="footerListItem">
+          <div class="floating-label-input">
+            <input id="subscribeInput" type="email" required />
+            <label for="subscribeInput">E-mail</label>
+          </div>
+        </li>
+        <li class="footerListItem"></li>
+        <li class="footerListItem">
+          <shop-button label="Submit"></shop-button>
+        </li>
+      </ul>
+    </footer>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+    <script src="./index.js"></script>
+  </body>
+</html>
