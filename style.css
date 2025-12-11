@@ -198,13 +198,6 @@ ul {
   transition: background-color 0.1s ease-out, box-shadow 0.1s ease-out;
 }
 
-.menu-item:hover::after {
-  width: 100%;
-}
-.menu-item:not(:hover)::after {
-  transition: width 0.1s ease; /* leaving hover */
-}
-
 /*HERO CAROUSEL SELECTORS*/
 
 .hero-carousel {
