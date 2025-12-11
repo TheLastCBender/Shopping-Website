@@ -1,6 +1,7 @@
 :root {
   --menu-item-hover-color: #e3d7c7;
 }
+
 body {
   margin: 0;
   background-color: #f4f0eb;
@@ -65,7 +66,6 @@ h3 {
   align-self: center;
   display: flex;
   justify-content: center;
-  margin-right: 400px;
 }
 h1,
 .section-title h2 {
@@ -273,6 +273,7 @@ ul {
   justify-content: center;
   gap: 1.5rem;
 }
+
 .item-card {
   display: inline-flex;
   flex-direction: column;
