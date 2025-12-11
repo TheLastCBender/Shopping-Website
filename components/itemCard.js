@@ -6,6 +6,8 @@ class shopItemCard extends HTMLElement {
   connectedCallback() {
     const itemName = this.getAttribute("name") || "RAYE SUNGLASSES (PRE-ORDER)";
     const itemPrice = this.getAttribute("price") || "From $159.00 USD";
+    const width = this.getAttribute("width") || "22rem";
+    const height = this.getAttribute("height") || "35rem";
     const itemUrl =
       this.getAttribute("url") || "./Images/black_girl_magic-11.jpg";
     this.shadowRoot.innerHTML = `
@@ -26,8 +28,8 @@ class shopItemCard extends HTMLElement {
             cursor: pointer;}
             
             button img {
-            height: 37rem;
-            width: 24rem;
+            height: ${height};
+            width: ${width};
             object-fit:cover;
             }
 
@@ -42,8 +44,8 @@ class shopItemCard extends HTMLElement {
                 content: "";
                 background-color: #333333;
                 position: absolute;
-                width: 24rem;
-                height: 37rem;
+                width: ${width};
+                height: ${height};
                 opacity: 0;
                 transition: opacity ease-in-out 0.5s;
             }
