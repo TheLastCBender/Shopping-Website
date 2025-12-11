@@ -147,12 +147,6 @@ h1,
   transition: opacity ease-in-out 0.25s;
 }
 
-#shop-drop-down-area:hover {
-  opacity: 1;
-  pointer-events: auto;
-  transition: opacity ease-in-out 0.25s;
-}
-
 .primary-nav-bar > li {
   height: 100%;
 }
