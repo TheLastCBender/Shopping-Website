@@ -17,7 +17,7 @@ class ShopCarousel extends HTMLElement {
 
   #selectDot(dot) {
     dot.classList.add(`active`);
-    if (this.#lastDotClicked !== null && this.#lastDotClicked !== dot) {
+    if (this.#lastDotClicked !== undefined && this.#lastDotClicked !== dot) {
       this.#lastDotClicked.classList.remove(`active`);
     }
     this.#lastDotClicked = dot;
