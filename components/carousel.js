@@ -24,7 +24,8 @@ class ShopCarousel extends HTMLElement {
     this.#lastDotClicked = dot;
   }
   #transitionSlide(currentSlide, nextSlide) {
-    transitioning = true;
+    // prevent concurrent transitions
+    this.#transitioning = true;
     currentSlide.classList.remove("current");
     nextSlide.classList.add("current");
 
@@ -32,13 +33,17 @@ class ShopCarousel extends HTMLElement {
       setTimeout(() => {
         currentSlide.style.transition = "none";
         nextSlide.style.transition = "none";
+        // copy the next slide image into the current slide element so we can reuse the two-slide trick
         currentSlide.style.backgroundImage = nextSlide.style.backgroundImage;
+        // restore classes so the original current element becomes active again
         nextSlide.classList.remove("current");
         currentSlide.classList.add("current");
         this.#forceReflow(currentSlide);
         currentSlide.style.transition = "";
         nextSlide.style.transition = "";
 
+        // allow new transitions
+        this.#transitioning = false;
         resolve();
       }, 1000);
     });
@@ -148,9 +153,8 @@ class ShopCarousel extends HTMLElement {
         this.#nextSlide.style.backgroundImage = `url(${
           this.#heroCarouslImg[index]
         })`;
-        this.#transitionSlide(this.#currentSlide, this.#nextSlide).then(() => {
-          this.#transitioning = false;
-        });
+        // transitionSlide manages the transitioning flag internally
+        this.#transitionSlide(this.#currentSlide, this.#nextSlide);
       });
     });
   }
