@@ -8,8 +8,7 @@ class ShopCarousel extends HTMLElement {
   #heroCarouselDots;
   #currentSlide;
   #nextSlide;
-  #lastDotClicked = null;
-  #carousel;
+  #lastDotClicked;
 
   constructor() {
     super();
@@ -140,7 +139,6 @@ class ShopCarousel extends HTMLElement {
       </div>
     </div>`;
     this.#heroCarouselDots = this.shadowRoot.querySelectorAll(".dot");
-    this.#carousel = this.shadowRoot.querySelector(".carousel");
     this.#currentSlide = this.shadowRoot.querySelector(".current.slide");
     this.#nextSlide = this.shadowRoot.querySelector(".next.slide");
     this.#initializeCarousel();
