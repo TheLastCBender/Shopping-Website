@@ -1,5 +1,5 @@
 :root {
-  --menu-item-hover-color: #e3d7c7;
+  --menu-item-hover-color: #f4f0eb;
 }
 
 body {
@@ -83,7 +83,65 @@ h1,
   transition: background-color 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
 }
 
-#shop-drop-down-area {
+.primary.menu-item {
+  min-width: 100px;
+  letter-spacing: 2px;
+}
+.primary.menu-item a {
+  height: 100%;
+  width: 100%;
+  align-content: center;
+  text-align: center;
+}
+
+.segmentedDropDown {
+  list-style: none;
+  position: absolute;
+  perspective: 1000px;
+  left: 100px;
+  opacity: 1;
+  top: 100%;
+  pointer-events: none;
+}
+
+/*.the-artist-drop-down::after {
+  content: "";
+  background-color: #1c1c1c;
+  width: 100%;
+  height: 2px;
+  top: 0;
+  position: absolute;
+  transform: rotateY(-15deg);
+}*/
+
+.segmented-drop-down-item {
+  --oTimeOffset: 0.2;
+  --rTimeOffset: 0.2;
+
+  text-align: center;
+  background-color: #f4f0eb;
+  height: 40px;
+  width: 180px;
+  align-content: center;
+  letter-spacing: 0.1rem;
+  transform: rotateX(-100deg);
+  opacity: 0;
+  font-size: 0.85rem;
+  transform-origin: top center;
+  transition: opacity calc(var(--oTiming) * var(--oTimeOffset)) ease-in-out
+      calc(var(--oTiming) * var(--oTimeOffset) / 3),
+    transform calc(var(--rTiming) * var(--rTimeOffset)) ease-in-out
+      calc(var(--oTiming) * var(--oTimeOffset) / 3),
+    box-shadow 0.2s ease-in-out;
+}
+
+.segmented-drop-down-item:hover {
+  box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.18);
+}
+
+/* Staggered transition durations for the artist dropdown items */
+
+.drop-down-area {
   --second-header-width: 100%;
   background-color: var(--menu-item-hover-color);
   position: absolute;
@@ -100,9 +158,10 @@ h1,
   gap: 5rem;
   opacity: 0;
   pointer-events: none;
+  transition: opacity ease-in-out 0.25s;
 }
 
-#shop-drop-down-area ul {
+.drop-down-area ul {
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
@@ -110,14 +169,14 @@ h1,
   margin-top: 3rem;
 }
 
-#shop-drop-down-area ul li:first-child {
+.drop-down-area ul li:first-child {
   /*menu item title*/
   font-weight: 100;
   font-size: 1rem;
   margin-bottom: 0.5rem;
   position: relative;
 }
-#shop-drop-down-area ul li:first-child::after {
+.drop-down-area ul li:first-child::after {
   /*menu item title*/
   content: "";
   height: 1%;
@@ -128,27 +187,17 @@ h1,
   left: 0;
 }
 
-#shop-drop-down-area a:hover {
+.drop-down-area a:hover {
+  /*make drop down items glow*/
   color: #f4f0eb;
   transition: color 0.1s ease-in-out;
 }
-#shop-drop-down-area a:not(:hover) {
+.drop-down-area a:not(:hover) {
   transition: color 0.6s ease-in-out;
 }
 
-.primary-nav-bar > li:first-child:hover #shop-drop-down-area {
-  /*this is for the shop menu item*/
+.visible {
   opacity: 1;
-  pointer-events: auto;
-  transition: opacity ease-in-out 0.25s;
-}
-
-.primary-nav-bar > li:first-child:not(:hover) #shop-drop-down-area {
-  transition: opacity ease-in-out 0.25s;
-}
-
-.primary-nav-bar > li {
-  height: 100%;
 }
 
 .drop-down {
@@ -169,10 +218,6 @@ a:visited {
   color: #333333;
 }
 
-.primary.menu-item {
-  min-width: 100px;
-  letter-spacing: 2px;
-}
 .secondary.menu-item {
   min-width: 80px;
 }
@@ -184,12 +229,10 @@ ul {
   min-width: 80px;
   transform: scale(0.23);
 }
-.menu-item:hover {
+
+.menuHovered {
   background-color: var(--menu-item-hover-color);
   box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.18);
-}
-.menu-item:not(:hover) {
-  transition: background-color 0.1s ease-out, box-shadow 0.1s ease-out;
 }
 
 /*HERO CAROUSEL SELECTORS*/
@@ -216,13 +259,7 @@ ul {
 .current {
   opacity: 1;
 }
-/*.hero-carousel::after {
-  content: "";
-  position: absolute;
-  background-color: #1c1c1c;
-  width: 100%;
-  height: 100%;
-}*/
+
 .hero-text {
   color: #f4f0eb;
   font-size: x-large;
@@ -575,4 +612,14 @@ input {
   font-size: 0.7rem;
   background-color: #f4f0eb;
   padding: 0 0.2rem;
+}
+
+.flipDown {
+  opacity: 1;
+  transform: rotateX(0deg);
+}
+
+.fastSegmentedClose {
+  transform: rotateX(0deg);
+  transition: transform 0s ease-in-out, opacity 0.5s ease-in-out;
 }
