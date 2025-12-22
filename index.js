@@ -1,36 +1,21 @@
 // when shop list item is hovered
-// append drop down insisde list item
-// append drop down to as a child to the list item
+// append drop down inside list item
+// append drop down as a child to the list item
 // assign the opaque class to the drop down
-// when transitionend even is fired, set pointer-events to none
-//and remove the drop down element from the list item
+// when transitionend event is fired, set pointer-events to none
+// and remove the drop down element from the list item
 
-//POTENTIAL CONCERNS
+// POTENTIAL CONCERNS
 // adding numerous event listeners.
 // I want the user to be able to hover on the drop down and keep it
 // even when it's fading. So will having the same event fired be an issue?
 
 class ShopDropDownService extends HTMLElement {
-  #menuItems; //node list of menu items
-  #transitionDirection;
-  #menuDropDowns; //their dropdowns
+  #menuItems;
+
   constructor() {
     super();
-    this.attachShadow({ mode: `open` });
-  }
-
-  #speedUpTransition(children) {
-    Array.from(children).forEach((child) => {
-      child.style.setProperty("--rTiming", `${0.1}s`);
-      child.style.setProperty("--oTiming", `${0.1}s`);
-    });
-  }
-
-  #fastSegmentClose(children) {
-    Array.from(children).forEach((child, index) => {
-      child.style.transition = `transform 0s ease-in-out, opacity 0.5s ease-in-out`;
-      child.style.transform = `rotateX(0deg)`;
-    });
+    this.attachShadow({ mode: "open" });
   }
 
   // Helper: add a class to all direct children of an element
@@ -43,9 +28,14 @@ class ShopDropDownService extends HTMLElement {
 
   // Helper: remove a class from all direct children of an element
   #removeClassFromChildren(parent, className) {
+    if (!(parent instanceof HTMLElement)) return;
     Array.from(parent.children).forEach((child) =>
       child.classList.remove(className)
     );
+    // safety: also remove from deeper descendants in case it was applied there
+    parent
+      .querySelectorAll(`.${className}`)
+      .forEach((el) => el.classList.remove(className));
   }
 
   // Initialize transition CSS on segmented dropdown children
@@ -69,58 +59,62 @@ class ShopDropDownService extends HTMLElement {
 
   connectedCallback() {
     this.#menuItems = document.querySelectorAll(".primary.menu-item");
-    this.#menuDropDowns = document.querySelectorAll(".primary.menu-item");
-    this.#menuItems.forEach((menuItem, index) => {
-      const menuDropDown = menuItem.children[1];
+
+    this.#menuItems.forEach((menuItem) => {
+      const menuDropDown = menuItem.children[1]; // the potential dropdown container
       const hasDropDown = menuDropDown instanceof HTMLElement;
       const isSegmented =
         hasDropDown && menuDropDown.classList.contains("segmented");
-      console.log(`isSegmented:${isSegmented}\n hasDropDown:${hasDropDown}`);
+      let fastSegmentAdded = false;
+
       if (hasDropDown) {
         menuDropDown.inert = true;
+        // if segmented initialize per-child timing vars
         if (isSegmented) {
           this.#initializeChildrenCss(menuDropDown.children);
-          console.log(`${menuDropDown}/n${menuDropDown.children}`);
+          console.log(`${menuDropDown}\n`, menuDropDown.children);
           console.log("WE INITIALIZED THE VARIABLES");
+          // start closed with the fast close class so transitions are consistent
+          this.#addClassToChildren(menuDropDown, "fastSegmentedClose");
         }
       }
 
       let transitionDirection = 0;
 
-      menuItem.addEventListener("pointerenter", (e) => {
+      menuItem.addEventListener("pointerenter", () => {
         // set direction early so segmented checks don't override it
         transitionDirection = 1;
 
-        if (isSegmented) {
-          this.#addClassToChildren(menuDropDown.children, "flipDown");
-          this.#initializeChildrenCss(menuDropDown.children);
-          console.log("line 95");
-
-          menuItem.classList.add(`menuHovered`);
-          this.#addClassToChildren(menuDropDown, `flipDown`);
+        if (isSegmented && hasDropDown) {
+          // open segmented: remove the fast close and add flipDown
+          this.#removeClassFromChildren(menuDropDown, "fastSegmentedClose");
+          this.#addClassToChildren(menuDropDown, "flipDown");
+          menuItem.classList.add("menuHovered");
           return;
         }
 
-        menuItem.classList.add(`menuHovered`);
-        if (hasDropDown) menuDropDown.classList.add(`visible`);
+        menuItem.classList.add("menuHovered");
+        if (hasDropDown) menuDropDown.classList.add("visible");
       });
 
-      menuItem.addEventListener("pointerleave", (e) => {
+      menuItem.addEventListener("pointerleave", () => {
         transitionDirection = -1;
 
-        if (isSegmented) {
-          this.#speedUpTransition(menuDropDown.children);
+        if (isSegmented && hasDropDown) {
+          // close segmented: add fast close and remove flipDown
+          this.#addClassToChildren(menuDropDown, "fastSegmentedClose");
+          fastSegmentAdded = true;
           this.#removeClassFromChildren(menuDropDown, "flipDown");
-          menuItem.classList.remove(`menuHovered`);
+          menuItem.classList.remove("menuHovered");
           return;
         }
 
-        menuItem.classList.remove(`menuHovered`);
-        if (hasDropDown) menuDropDown.classList.remove(`visible`);
+        menuItem.classList.remove("menuHovered");
+        if (hasDropDown) menuDropDown.classList.remove("visible");
       });
 
       if (hasDropDown) {
-        menuDropDown.addEventListener("transitionend", (e) => {
+        menuDropDown.addEventListener("transitionend", () => {
           if (transitionDirection === 1) {
             menuDropDown.style.pointerEvents = "auto";
             console.log("pointer events on");
@@ -134,4 +128,5 @@ class ShopDropDownService extends HTMLElement {
     });
   }
 }
+
 customElements.define("shop-drop-down-service", ShopDropDownService);
