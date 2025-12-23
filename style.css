@@ -88,7 +88,45 @@ h1,
 }
 
 .menu-item:hover .segmented-drop-down-item {
-  display: block;
+  -webkit-animation-name: flapDown;
+  animation-name: flapDown;
+  -webkit-animation-duration: 600ms;
+  animation-duration: 600ms;
+  -webkit-animation-timing-function: ease-in-out;
+  animation-timing-function: ease-in-out;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
+
+.menu-item:hover .segmented-drop-down-item:nth-child(1) {
+  -webkit-animation-delay: 0ms;
+  animation-delay: 0ms;
+}
+.menu-item:hover .segmented-drop-down-item:nth-child(2) {
+  -webkit-animation-delay: 150ms;
+  animation-delay: 150ms;
+}
+.menu-item:hover .segmented-drop-down-item:nth-child(3) {
+  -webkit-animation-delay: 300ms;
+  animation-delay: 300ms;
+}
+.menu-item:hover .segmented-drop-down-item:nth-child(4) {
+  -webkit-animation-delay: 450ms;
+  animation-delay: 450ms;
+}
+.menu-item:hover {
+  -webkit-animation-delay: 600ms;
+  animation-delay: 600ms;
+}
+
+.menu-item:hover .segmentedDropDown {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.menu-item:hover .drop-down-area {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .primary.menu-item {
@@ -107,74 +145,11 @@ h1,
   position: absolute;
   perspective: 1000px;
   left: 100px;
-  opacity: 1;
   top: 100%;
-  pointer-events: none;
-}
 
-.segmentedDropDown li:nth-child(1) {
-  -webkit-animation-name: flapDown;
-  animation-name: flapDown;
-  -webkit-animation-duration: 600ms;
-  animation-duration: 600ms;
-  -webkit-animation-delay: 0ms;
-  animation-delay: 0ms;
-  -webkit-animation-timing-function: ease-in-out;
-  animation-timing-function: ease-in-out;
-  -webkit-animation-fill-mode: forwards;
-  animation-fill-mode: forwards;
-}
-
-.segmentedDropDown li:nth-child(2) {
-  -webkit-animation-name: flapDown;
-  animation-name: flapDown;
-  -webkit-animation-duration: 600ms;
-  animation-duration: 600ms;
-  -webkit-animation-delay: 200ms;
-  animation-delay: 200ms;
-  -webkit-animation-timing-function: ease-in-out;
-  animation-timing-function: ease-in-out;
-  -webkit-animation-fill-mode: forwards;
-  animation-fill-mode: forwards;
-}
-
-.segmentedDropDown li:nth-child(3) {
-  -webkit-animation-name: flapDown;
-  animation-name: flapDown;
-  -webkit-animation-duration: 600ms;
-  animation-duration: 600ms;
-  -webkit-animation-delay: 400ms;
-  animation-delay: 400ms;
-  -webkit-animation-timing-function: ease-in-out;
-  animation-timing-function: ease-in-out;
-  -webkit-animation-fill-mode: forwards;
-  animation-fill-mode: forwards;
-}
-
-.segmentedDropDown li:nth-child(4) {
-  -webkit-animation-name: flapDown;
-  animation-name: flapDown;
-  -webkit-animation-duration: 600ms;
-  animation-duration: 600ms;
-  -webkit-animation-delay: 600ms;
-  animation-delay: 600ms;
-  -webkit-animation-timing-function: ease-in-out;
-  animation-timing-function: ease-in-out;
-  -webkit-animation-fill-mode: forwards;
-  animation-fill-mode: forwards;
-}
-
-.segmentedDropDown li:nth-child(5) {
-  -webkit-animation-name: flapDown;
-  animation-name: flapDown;
-  -webkit-animation-duration: 600ms;
-  animation-duration: 600ms;
-  -webkit-animation-delay: 800ms;
-  animation-delay: 800ms;
-  -webkit-animation-timing-function: ease-in-out;
-  animation-timing-function: ease-in-out;
-  -webkit-animation-fill-mode: forwards;
-  animation-fill-mode: forwards;
+  opacity: 0; /* hidden by default */
+  pointer-events: none; /* not clickable when closed */
+  transition: opacity 250ms ease-in-out;
 }
 
 @keyframes flapDown {
@@ -209,9 +184,7 @@ h1,
   opacity: 0;
   font-size: 0.85rem;
   transform-origin: top center;
-  display: none;
-  pointer-events: auto;
-  transition: box-shadow 0.3s ease-in-out;
+  transition: box-shadow 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
 
 .segmented-drop-down-item:hover {
@@ -273,10 +246,6 @@ h1,
 }
 .drop-down-area a:not(:hover) {
   transition: color 0.6s ease-in-out;
-}
-
-.visible {
-  opacity: 1;
 }
 
 .drop-down {
