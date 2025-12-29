@@ -657,12 +657,7 @@ input {
   padding: 0 0.2rem;
 }
 
-.flipDown {
+.fadeDown {
   opacity: 1;
-  transform: rotateX(0deg);
-}
-
-.fastSegmentedClose {
-  transform: rotateX(0deg);
-  transition: transform 0s ease-in-out, opacity 0.5s ease-in-out;
+  transform: translateY(0px);
 }
