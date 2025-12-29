@@ -141,18 +141,23 @@ h1,
 }
 
 .segmentedDropDown {
+  --baseDelay: 150ms;
+  --baseDuration: 600ms;
   list-style: none;
   position: absolute;
   perspective: 1000px;
   left: 100px;
   top: 100%;
-
+  transform: translateY(-20px);
   opacity: 0; /* hidden by default */
   pointer-events: none; /* not clickable when closed */
-  transition: opacity 250ms ease-in-out;
+  transition: opacity calc(var(--baseDuration) * var(--durationModifier))
+      ease-in-out calc(var(--baseDelay) * var(--delayModifier)),
+    transform calc(var(--baseDuration) * var(--durationModifier)) ease-in-out
+      calc(var(--baseDelay) * var(--delayModifier));
 }
 
-@keyframes flapDown {
+/*@keyframes flapDown {
   0% {
     transform: translateY(-20px);
     opacity: 0;
@@ -162,7 +167,7 @@ h1,
     transform: translateY(0px);
     opacity: 1;
   }
-}
+}*/
 
 /*.the-artist-drop-down::after {
   content: "";
